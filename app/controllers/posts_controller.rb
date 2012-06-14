@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  
+  http_basic_authenticate_with :name => "dhh", :password => "secret", :except => [:index, :show]
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -41,7 +44,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-
+        
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
